@@ -4,7 +4,9 @@ resource "aws_vpc" "devpos" {
   cidr_block = "172.16.0.0/16"
 
   tags = {
-    Name = var.name_vpc
+    #Name = var.name_vpc
+    name = "${local.name_vpc}"
+
   }
 }
 
@@ -16,7 +18,9 @@ resource "aws_subnet" "public_a" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = var.name_public
+    #Name = var.name_public_subnet
+    Name = "${local.name_vpc}-${local.name_public_subnet}"
+
   }
 }
 
@@ -24,7 +28,9 @@ resource "aws_subnet" "public_a" {
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.devpos.id
   tags = {
-    Name = var.name_igw
+    #Name = var.name_igw
+    Name = "${local.name_vpc}-${local.name_public_subnet}-${local.name_igw}"
+
   }
 }
 
@@ -33,7 +39,8 @@ resource "aws_internet_gateway" "ig" {
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.devpos.id
   tags = {
-    Name = var.name_routing
+    # Name = var.name_routing
+    Name = "${local.name_vpc}-${local.name_public_subnet}-${local.name_igw}-${local.name_routing}"
   }
 }
 resource "aws_route" "public_internet_gateway" {
@@ -56,17 +63,17 @@ variable "name_vpc" {
 
 }
 
-variable "name_public" {
-  default = join(var.name_pc,"-public") 
+variable "name_public_subnet" {
+  default = "vpc-devops-subnet"
 
 }
 
 variable "name_igw" {
-  default = join(var.name_public,"-igw")
+  default = "vpc-devops-subnet-igw"
 
 }
 
 variable "name_routing" {
-  default = join(var.name_igw,"-roungting")
+  default = "vpc-devops-subnet-igw-routing"
 
 }
