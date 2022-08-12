@@ -11,9 +11,9 @@ resource "aws_vpc" "devpos" {
 }
 
 #Tao Public subnet
-resource "aws_subnet" "public_a" {
+resource "aws_subnet" "public_vpc" {
   vpc_id                  = aws_vpc.devpos.id
-  cidr_block              = "172.16.1.0/24"
+  cidr_block              = "172.16.100.0/24"
   availability_zone       = "ap-southeast-1a"
   map_public_ip_on_launch = true
 
@@ -52,7 +52,7 @@ resource "aws_route" "public_internet_gateway" {
 
 # gán public subnet vào public routing table
 resource "aws_route_table_association" "public" {
-  subnet_id      = aws_subnet.public_a.id
+  subnet_id      = aws_subnet.public_vpc.id
   route_table_id = aws_route_table.public.id
 }
 
