@@ -1,2 +1,15 @@
 ex/.terraform/
+ex/.tfvars*
+ex/*.tfstate*
 testing/.terraform/
+testing/.tfvars*
+testing/*.tfstate*
+production/.terraform/
+production/.tfvars*
+production/*.tfstate*
+
+.terraform/
+.tfvars*
+*.tfstate*
+
+
