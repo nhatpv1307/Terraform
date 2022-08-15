@@ -22,7 +22,3 @@ output "ec2_instance_id" {
 output "ec2_instance_ip_public" {
   value = module.ec2_instance.public_ip
 }
-
-output "alb_dns_name" {
-  value = module.alb.lb_dns_name
-}
