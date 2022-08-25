@@ -1,0 +1,12 @@
+Host *
+  User devops
+  IdentityFile ~/.ssh/id_rsa
+
+Host web01
+  HostName 10.28.7.18
+
+Host web02
+  HostName 10.28.7.19
+
+Host database
+  HostName 10.28.7.20

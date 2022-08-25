@@ -9,7 +9,7 @@ module "alb" {
 
   vpc_id          = module.vpc.vpc_id
   subnets         = module.vpc.public_subnets
-  security_groups = [module.ec2_security_group.security_group_id]
+  security_groups = [module.ec2_security_group1.security_group_id]
 
   ## Update and un-comment the below part after creating web ec2 instances
 
@@ -17,16 +17,21 @@ module "alb" {
 
      target_groups = [
        {
-         name_prefix      = "web-"
+         name_prefix      = "web12-"
          backend_protocol = "HTTP"
          backend_port     = 80
          target_type      = "instance"
          targets = {
            web-za-01 = {
-             target_id = "${local.ec2_id}"
+             target_id = "${local.ec2_id[0]}"
             # "i-0e993d9fee37a0a23" # Replace with the instance id of web-za-01
              port      = 80
            }
+           web-za-01 = {
+             target_id = "${local.ec2_id[1]}"
+            # "i-0e993d9fee37a0a23" # Replace with the instance id of web-za-01
+             port      = 80
+           }           
                   }
        }
      ]

@@ -1,0 +1,8 @@
+---
+wordpress_volume_name: wordpress
+
+# lấy từ playbooks/db.yml
+mysql_host: 10.28.7.20:3306
+mysql_user: wordpress
+mysql_db_name: wordpress
+mysql_password: another-secure-password

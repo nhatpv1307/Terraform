@@ -1,4 +1,5 @@
 # gọi module s3 từ đường dẫn local và truyền các giá trị vào
+
 module "s3_bucket" {
   source = "../modules/s3"
 
@@ -9,3 +10,5 @@ bucket_acl  = "authenticated-read"
     Env = "${var.env}"
   }
 }
+
+

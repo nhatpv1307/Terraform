@@ -1,4 +1,5 @@
 # in ra output của s3 module
+
 output "s3_bucket_name" {
   value = module.s3_bucket.name
 }
@@ -26,3 +27,4 @@ output "ec2_instance_ip_public" {
 output "alb_dns_name" {
   value = module.alb.lb_dns_name
 }
+

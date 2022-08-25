@@ -8,16 +8,15 @@
 
 # tạo ec2 instance
 
-module "ec2_instance" {
+module "ec2_instance1" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 3.0"
-
-  name = "web-instance-${var.env}"
-
-  ami                    = "ami-0eaf04122a1ae7b3b" # https://cloud-images.ubuntu.com/locator/ec2/
+  count = 2
+  name = "web-instance-${var.env}-${count.index}"
+  ami                    = "ami-02ee763250491e04a" # https://cloud-images.ubuntu.com/locator/ec2/
   instance_type          = "t2.micro"
   key_name               = "key-connect-ssh"
-  vpc_security_group_ids = [module.ec2_security_group.security_group_id]
+  vpc_security_group_ids = [module.ec2_security_group1.security_group_id]
   subnet_id              = element(module.vpc.public_subnets, 0)
 
   tags = {
@@ -28,7 +27,7 @@ module "ec2_instance" {
 
 # https://registry.terraform.io/modules/terraform-aws-modules/security-group/aws/4.9.0
 
-module "ec2_security_group" {
+module "ec2_security_group1" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.9.0"
 
@@ -40,4 +39,3 @@ module "ec2_security_group" {
   ingress_rules       = ["all-icmp", "ssh-tcp"]
   egress_rules        = ["all-all"]
 }
-
