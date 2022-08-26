@@ -1,0 +1,9 @@
+Host *
+  User ubuntu
+  IdentityFile ~/.ssh/id_rsa
+
+Host web01
+  HostName 18.141.205.88
+
+Host web02
+  HostName 18.139.217.232

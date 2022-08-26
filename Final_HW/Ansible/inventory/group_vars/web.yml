@@ -1,0 +1,7 @@
+---
+wordpress_volume_name: wordpress
+
+mysql_host: db-prod.cemidf4hv9h1.ap-southeast-1.rds.amazonaws.com
+mysql_user: userprod
+mysql_db_name: dbprod
+mysql_password: userprod
